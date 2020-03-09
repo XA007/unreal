@@ -6,6 +6,8 @@
 #include "SoftDesignTrainingCharacter.h"
 
 #include "DrawDebugHelpers.h"
+#include "SDTAIController.h"
+#include "Engine.h"
 
 ASoftDesignTrainingPlayerController::ASoftDesignTrainingPlayerController()
 {

@@ -8,6 +8,9 @@
 #include "SDTCollectible.h"
 
 
+int ASoftDesignTrainingCharacter::mPickupCount = 0;
+int ASoftDesignTrainingCharacter::mKillsCount = 0;
+
 ASoftDesignTrainingCharacter::ASoftDesignTrainingCharacter()
 {
     GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
@@ -16,6 +19,9 @@ ASoftDesignTrainingCharacter::ASoftDesignTrainingCharacter()
 void ASoftDesignTrainingCharacter::BeginPlay()
 {
     Super::BeginPlay();
+
+    mPickupCount = 0;
+	mKillsCount = 0;
 
     GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &ASoftDesignTrainingCharacter::OnBeginOverlap);
     m_StartingPosition = GetActorLocation();
@@ -26,6 +32,7 @@ void ASoftDesignTrainingCharacter::OnBeginOverlap(UPrimitiveComponent* Overlappe
     if (OtherComponent->GetCollisionObjectType() == COLLISION_DEATH_OBJECT)
     {
         SetActorLocation(m_StartingPosition);
+		mKillsCount++;
     }
     else if(ASDTCollectible* collectibleActor = Cast<ASDTCollectible>(OtherActor))
     {
@@ -41,4 +48,9 @@ void ASoftDesignTrainingCharacter::OnBeginOverlap(UPrimitiveComponent* Overlappe
         if(mainCharacter->IsPoweredUp())
             SetActorLocation(m_StartingPosition);
     }
+}
+
+void ASoftDesignTrainingCharacter::OnCollectPowerUp()
+{
+	mPickupCount++;
 }

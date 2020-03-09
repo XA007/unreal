@@ -30,3 +30,24 @@ bool SDTUtils::IsPlayerPoweredUp(UWorld * uWorld)
 
     return castedPlayerCharacter->IsPoweredUp();
 }
+
+AActor* SDTUtils::IsClosestActor(TArray<AActor*> actors, FVector pos)
+{
+    if (actors.Num() == 0) return nullptr;
+
+    AActor* closestActor = actors[0];
+    float minDistance = (closestActor->GetActorLocation() - pos).Size();
+
+    for (int i = 1; i < actors.Num(); i++)
+    {
+        float newDistance = (actors[i]->GetActorLocation() - pos).Size();
+
+        if (minDistance > newDistance)
+        {
+            closestActor = actors[i];
+            minDistance = newDistance;
+        }
+    }
+
+    return closestActor;
+}

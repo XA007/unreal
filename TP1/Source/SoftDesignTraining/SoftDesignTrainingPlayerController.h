@@ -18,6 +18,7 @@ protected:
     void MoveForward(float axisValue);
     void MoveRight(float axisValue);
 
+private:
 };
 
 

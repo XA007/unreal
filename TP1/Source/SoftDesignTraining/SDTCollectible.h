@@ -27,5 +27,4 @@ protected:
     FTimerHandle m_CollectCooldownTimer;
 	USoundWave* soundEffect;
 	UParticleSystem* particleEffect;
-	
 };
