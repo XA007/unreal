@@ -1,0 +1,12 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!TP1/Source/
+!TP1/Source/*
+!TP1/Source/SoftDesignTraining/
+!TP1/Source/SoftDesignTraining/*
+
+# ...even if they are in subdirectories
+!*/
